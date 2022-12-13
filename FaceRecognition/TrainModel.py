@@ -1,5 +1,6 @@
 import numpy as np
-from keras.models import load_model
+from tensorflow import keras
+
 
 
 # get the face embedding for one face
@@ -23,7 +24,7 @@ if __name__ == '__main__':
     print('Loaded: ', trainX.shape, trainy.shape, testX.shape, testy.shape)
 
     # load the facenet model
-    model = load_model('facenet_keras.h5')
+    model = keras.models.load_model('facenet_keras.h5')
     print('Loaded Model')
 
     # convert each face in the train set to an embedding
@@ -32,7 +33,6 @@ if __name__ == '__main__':
         embedding = get_embedding(model, face_pixels)
         newTrainX.append(embedding)
     newTrainX = np.asarray(newTrainX)
-    print(newTrainX.shape)
 
     # convert each face in the test set to an embedding
     newTestX = list()
@@ -40,7 +40,9 @@ if __name__ == '__main__':
         embedding = get_embedding(model, face_pixels)
         newTestX.append(embedding)
     newTestX = np.asarray(newTestX)
-    print(newTestX.shape)
+
     
     # save arrays to one file in compressed format
+    print(newTestX.shape)
+    print(newTrainX.shape)
     np.savez_compressed('5-celebrity-faces-embeddings.npz', newTrainX, trainy, newTestX, testy)

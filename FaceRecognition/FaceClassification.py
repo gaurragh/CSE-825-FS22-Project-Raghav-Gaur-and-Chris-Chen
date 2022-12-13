@@ -1,3 +1,4 @@
+import numpy as np
 from numpy import load
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import LabelEncoder
@@ -29,9 +30,12 @@ model.fit(trainX, trainy)
 yhat_train = model.predict(trainX)
 yhat_test = model.predict(testX)
 
+
 # score
 score_train = accuracy_score(trainy, yhat_train)
 score_test = accuracy_score(testy, yhat_test)
 
 # summarize
 print('Accuracy: train=%.3f, test=%.3f' % (score_train*100, score_test*100))
+print("predicted y:", yhat_test)
+print("true y:", testy)

@@ -3,7 +3,6 @@ import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import cv2  # opencv
 from mtcnn.mtcnn import MTCNN
-from matplotlib import pyplot as plt
 
 from PIL import Image
 
@@ -54,8 +53,6 @@ def load_dataset(dir):
     return np.asarray(X), np.asarray(y)
 
 
-
-
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     trainX, trainy = load_dataset('data/train/')
@@ -64,5 +61,6 @@ if __name__ == '__main__':
     print("Finished Loading test sets!")
     # save arrays to one file in compressed format
     np.savez_compressed('5-celebrity-faces-dataset.npz', trainX, trainy, testX, testy)
+    print(trainy)
 
 
